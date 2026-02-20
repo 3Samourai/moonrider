@@ -89,6 +89,9 @@ module.exports = {
       }
     ]
   },
+  externals: {
+    three: 'THREE'
+  },
   resolve: {
     modules: [path.join(__dirname, 'node_modules')]
   }

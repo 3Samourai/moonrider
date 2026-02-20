@@ -31,11 +31,11 @@ Big thanks to @elliottate for helping out with this!
 
 ## Development
 
-Have Node (< v12, recommended v11) and npm installed.
+Have Node (< v12, recommended v11) and pnpm installed.
 
 ```
-npm install
-npm run start
+pnpm install
+pnpm run start
 ```
 
 Then head to `localhost:3000` in your browser.
@@ -75,7 +75,7 @@ Showing off some crazy customizations? Enable GitHub Pages deployment to deploy
 `gh-pages` branch, and then:
 
 ```
-npm run deploy
+pnpm run deploy
 ```
 
 The website will be available on `https://yourusername.github.io/moonrider/`.
