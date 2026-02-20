@@ -41,7 +41,7 @@ AFRAME.registerComponent('search-thumbnail-atlas', {
 
     this.el.components.material.material.alphaMap = new THREE.CanvasTexture(alphaCanvas);
     this.el.setAttribute('material', 'src', canvas);
-    this.images = [];
+    this.expectedURLs = [];
 
     this.lastNumResults = NUM_PER_PAGE;
   },
@@ -51,14 +51,18 @@ AFRAME.registerComponent('search-thumbnail-atlas', {
 
     const results = el.sceneEl.systems.state.state.searchResultsPage;
     for (let i = 0; i < results.length; i++) {
-      let img = this.images[i] = this.images[i] || document.createElement('img');
+      const coverURL = results[i].coverURL;
+      this.expectedURLs[i] = coverURL;
+      const img = document.createElement('img');
       img.crossOrigin = 'anonymous';
-      img.src = results[i].coverURL;
+      img.src = coverURL;
       if (img.complete) {
         this.draw(img, i);
       } else {
         img.onload = () => {
-          this.draw(img, i);
+          if (this.expectedURLs[i] === coverURL) {
+            this.draw(img, i);
+          }
         };
       }
     }
