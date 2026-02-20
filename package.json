@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "deploy": "npm run predeploy && ghpages git@github.com:supermedium/moonrider.git -p .ghpages && rm -rf .ghpages",
+    "deploy": "pnpm run predeploy && ghpages git@github.com:supermedium/moonrider.git -p .ghpages && rm -rf .ghpages",
     "lint": "semistandard -v | snazzy",
     "lint:fix": "semistandard --fix",
-    "predeploy": "cross-env NODE_ENV=production npm run build && shx mkdir -p .ghpages && cp -r index.html assets build vendor CNAME .ghpages",
+    "predeploy": "cross-env NODE_ENV=production pnpm run build && shx mkdir -p .ghpages && cp -r index.html assets build vendor CNAME .ghpages",
     "start": "webpack-dev-server --host 0.0.0.0 --progress --colors --hot-only --inline --port 3000"
   },
   "dependencies": {
@@ -69,12 +69,10 @@
     "zip-loader": "github:ngokevin/ziploader#xhrdist",
     "unzip-js": "^1.0.0"
   },
-  "overrides": {
-    "aframe-render-order-component": {
-      "webpack": "~4.46.0"
-    },
-    "uglifyjs-webpack-plugin": {
-      "webpack": "~4.46.0"
+  "pnpm": {
+    "overrides": {
+      "aframe-render-order-component>webpack": "~4.46.0",
+      "uglifyjs-webpack-plugin>webpack": "~4.46.0"
     }
   },
   "devDependencies": {
@@ -97,6 +95,6 @@
   },
   "engines": {
     "node": "<=12.18.3",
-    "npm": "<=6.14.6"
+    "pnpm": ">=8"
   }
 }
